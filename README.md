@@ -1,6 +1,6 @@
 # NexTab
 
-A modern, accessible CSS framework with dark mode and RTL support.
+A modern, accessible CSS framework with dark mode, RTL support, and integrated wiki system.
 
 [![npm version](https://img.shields.io/npm/v/nextab.svg)](https://www.npmjs.com/package/nextab)
 [![License](https://img.shields.io/npm/l/nextab.svg)](https://github.com/nexvisora/NexTab/blob/main/LICENSE)
@@ -20,7 +20,7 @@ npm install nextab
 import 'nextab/dist/css/framework.min.css';
 
 // Import components
-import { Modal, Dropdown, Tooltip } from 'nextab';
+import { Modal, Dropdown, Tooltip, Wiki } from 'nextab';
 ```
 
 ### 3. Use
@@ -42,6 +42,7 @@ import { Modal, Dropdown, Tooltip } from 'nextab';
 - **Tree-Shakable**: Import only what you need
 - **Customizable**: Easy theming with CSS variables
 - **Modular**: Use components independently
+- **Integrated Wiki**: Built-in wiki system with Markdown support
 
 ## Installation Options
 
@@ -102,15 +103,37 @@ const dropdown = new Dropdown('.dropdown');
 <div class="dropdown">
   <button class="btn dropdown-toggle">Dropdown</button>
   <div class="dropdown-menu">
-    <a class="dropdown-item" href="#">
-      Item 1
-    </a>
-    <a class="dropdown-item" href="#">
-      Item 2
-    </a>
+    <a class="dropdown-item" href="#">Item 1</a>
+    <a class="dropdown-item" href="#">Item 2</a>
   </div>
-</div>;
+</div>
 ```
+
+### Wiki System
+
+```javascript
+// Import Wiki component
+import { Wiki } from 'nextab';
+
+// Initialize with MongoDB connection
+const wiki = new Wiki({
+  mongoUrl: 'mongodb://localhost/wiki',
+  baseUrl: '/wiki'
+});
+
+// HTML
+<div class="wiki-container">
+  <!-- Wiki content will be rendered here -->
+</div>
+```
+
+The Wiki system features:
+- Markdown support for content
+- Automatic slug generation
+- Responsive design
+- Dark mode compatibility
+- Full CRUD operations
+- Search functionality
 
 ### Dark Mode
 
@@ -150,6 +173,7 @@ const dropdown = new Dropdown('.dropdown');
 // Or specific components
 @import 'nextab/scss/components/buttons';
 @import 'nextab/scss/components/modal';
+@import 'nextab/scss/components/wiki';
 ```
 
 ### Tree Shaking
@@ -158,6 +182,25 @@ const dropdown = new Dropdown('.dropdown');
 // Import only what you need
 import { Modal } from 'nextab/js/components/modal';
 import { Dropdown } from 'nextab/js/components/dropdown';
+import { Wiki } from 'nextab/js/components/wiki';
+```
+
+## Wiki Configuration
+
+The Wiki system can be customized with various options:
+
+```javascript
+const wiki = new Wiki({
+  mongoUrl: 'mongodb://localhost/wiki',
+  baseUrl: '/wiki',
+  options: {
+    enableSearch: true,
+    enableVersioning: true,
+    markdownExtensions: ['tables', 'footnotes'],
+    maxArticleSize: '1MB',
+    allowedTags: ['h1', 'h2', 'p', 'a', 'strong', 'em']
+  }
+});
 ```
 
 ## Browser Support
@@ -168,8 +211,7 @@ import { Dropdown } from 'nextab/js/components/dropdown';
 
 ## Documentation
 
-Visit [documentation site](https://nexvisora.github.io/NexTab) for detailed usage instructions and
-examples.
+Visit [documentation site](https://nexvisora.github.io/NexTab) for detailed usage instructions and examples.
 
 ## License
 
