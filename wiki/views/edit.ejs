@@ -1,0 +1,14 @@
+<%- include('layout') %>
+
+<div class="row">
+    <div class="col-12">
+        <h1>Edit Article</h1>
+        <form action="/<%= article.slug %>?_method=PUT" method="POST">
+            <%- include('_form_fields') %>
+            <div class="mt-4">
+                <a href="/<%= article.slug %>" class="btn btn-secondary">Cancel</a>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>

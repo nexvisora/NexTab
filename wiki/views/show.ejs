@@ -1,0 +1,24 @@
+<%- include('layout') %>
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><%= article.title %></h1>
+            <div>
+                <a href="/<%= article.slug %>/edit" class="btn btn-info">Edit</a>
+                <form action="/<%= article.slug %>?_method=DELETE" method="POST" class="d-inline">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        </div>
+        <div class="article-content">
+            <%- article.markdownToHtml() %>
+        </div>
+        <div class="mt-4">
+            <small class="text-muted">
+                Created: <%= new Date(article.createdAt).toLocaleDateString() %>
+                | Last updated: <%= new Date(article.updatedAt).toLocaleDateString() %>
+            </small>
+        </div>
+    </div>
+</div>
