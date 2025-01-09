@@ -1,14 +1,25 @@
-<%- include('layout') %>
-
 <div class="row">
     <div class="col-12">
-        <h1>New Article</h1>
-        <form action="/" method="POST">
-            <%- include('_form_fields') %>
-            <div class="mt-4">
-                <a href="/" class="btn btn-secondary">Cancel</a>
-                <button type="submit" class="btn btn-primary">Create</button>
+        <div class="mb-4">
+            <a href="/" class="btn btn-link text-muted px-0">
+                <i class="fas fa-arrow-left me-2"></i>Back to Articles
+            </a>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h1><i class="fas fa-plus-circle me-2"></i>New Article</h1>
+                <form action="/" method="POST">
+                    <%- include('_form_fields') %>
+                    <div class="mt-4">
+                        <a href="/" class="btn btn-outline-secondary">
+                            <i class="fas fa-times me-2"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>Create Article
+                        </button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
 </div>

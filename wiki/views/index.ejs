@@ -1,25 +1,40 @@
-<%- include('layout') %>
-
 <div class="row">
     <div class="col-12">
-        <h1>Articles</h1>
+        <h1><i class="fas fa-book me-2"></i>Wiki Articles</h1>
         <% if (articles.length === 0) { %>
-            <p>No articles yet. Why not create one?</p>
-        <% } else { %>
-            <div class="list-group mt-4">
-                <% articles.forEach(article => { %>
-                    <a href="/<%= article.slug %>" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"><%= article.title %></h5>
-                            <small><%= new Date(article.createdAt).toLocaleDateString() %></small>
-                        </div>
+            <div class="card">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-feather-alt fa-3x text-muted mb-3"></i>
+                    <h3>No articles yet</h3>
+                    <p class="text-muted">Start by creating your first article!</p>
+                    <a href="/new" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Create Article
                     </a>
-                <% }) %>
+                </div>
+            </div>
+        <% } else { %>
+            <div class="card">
+                <div class="list-group list-group-flush">
+                    <% articles.forEach(article => { %>
+                        <a href="/<%= article.slug %>" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between align-items-center">
+                                <div>
+                                    <h5 class="mb-1"><%= article.title %></h5>
+                                    <div class="article-meta">
+                                        <i class="fas fa-calendar"></i>
+                                        <span>Created <%= new Date(article.createdAt).toLocaleDateString() %></span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-chevron-right text-muted"></i>
+                            </div>
+                        </a>
+                    <% }) %>
+                </div>
             </div>
         <% } %>
     </div>
 </div>
 
-<a href="/new" class="btn btn-primary btn-lg btn-floating">
-    <i class="fas fa-plus"></i> New Article
+<a href="/new" class="btn btn-primary btn-floating">
+    <i class="fas fa-plus"></i>
 </a>
