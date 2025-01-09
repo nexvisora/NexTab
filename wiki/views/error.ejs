@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-12 text-center py-5">
+        <div class="card">
+            <div class="card-body">
+                <% if (error.status === 404) { %>
+                    <i class="fas fa-search fa-4x text-muted mb-4"></i>
+                <% } else { %>
+                    <i class="fas fa-exclamation-triangle fa-4x text-danger mb-4"></i>
+                <% } %>
+                <h1 class="display-4 mb-4"><%= message %></h1>
+                <% if (error.status === 404) { %>
+                    <p class="lead text-muted">The page you're looking for doesn't exist.</p>
+                <% } else { %>
+                    <p class="lead text-muted">An error occurred while processing your request.</p>
+                <% } %>
+                <% if (process.env.NODE_ENV === 'development' && error.stack) { %>
+                    <div class="alert alert-danger mt-4">
+                        <pre class="mb-0"><%= error.stack %></pre>
+                    </div>
+                <% } %>
+                <a href="/" class="btn btn-primary mt-4">
+                    <i class="fas fa-home me-2"></i>Return to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
