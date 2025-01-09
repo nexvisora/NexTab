@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexTab Framework Demo</title>
+    <link rel="stylesheet" href="css/framework.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/cards.css">
+    <link rel="stylesheet" href="css/components/navbar.css">
+    <link rel="stylesheet" href="css/components/modal.css">
+    <link rel="stylesheet" href="css/components/dropdown.css">
+    <link rel="stylesheet" href="css/components/tooltip.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container d-flex justify-content-between align-items-center">
+                <a href="#" class="navbar-brand">NexTab</a>
+                <ul class="navbar-nav d-flex">
+                    <li><a href="#components">Components</a></li>
+                    <li><a href="#utilities">Utilities</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" data-dropdown-menu="mainDropdown">More ▾</a>
+                        <div class="dropdown-menu" id="mainDropdown">
+                            <h6 class="dropdown-header">Framework</h6>
+                            <a class="dropdown-item" href="#docs">Documentation</a>
+                            <a class="dropdown-item" href="#examples">Examples</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#themes">Themes</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="bg-primary text-light text-center py-5">
+            <div class="container">
+                <h1 class="mb-4">Welcome to NexTab Framework</h1>
+                <p class="mb-4">A modern, lightweight CSS framework for building responsive websites</p>
+                <button class="btn btn-light" onclick="showModal()">Get Started</button>
+            </div>
+        </section>
+
+        <section id="components" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5">Components</h2>
+                <div class="d-flex flex-wrap justify-content-between">
+                    <!-- Buttons -->
+                    <div class="card mb-4" style="width: 300px;">
+                        <div class="card-body">
+                            <h3 class="card-title">Buttons</h3>
+                            <button class="btn btn-primary mb-2" data-tooltip="Primary button tooltip">Primary</button>
+                            <button class="btn btn-secondary mb-2">Secondary</button>
+                            <button class="btn btn-success mb-2">Success</button>
+                            <button class="btn btn-danger mb-2">Danger</button>
+                        </div>
+                    </div>
+
+                    <!-- Dropdowns -->
+                    <div class="card mb-4" style="width: 300px;">
+                        <div class="card-body">
+                            <h3 class="card-title">Dropdowns</h3>
+                            <div class="dropdown">
+                                <button class="btn btn-primary" data-toggle="dropdown" data-dropdown-menu="demoDropdown">
+                                    Dropdown Button
+                                </button>
+                                <div class="dropdown-menu" id="demoDropdown">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tooltips -->
+                    <div class="card mb-4" style="width: 300px;">
+                        <div class="card-body">
+                            <h3 class="card-title">Tooltips</h3>
+                            <button class="btn btn-secondary mb-2" data-tooltip="Top tooltip">Tooltip on top</button>
+                            <button class="btn btn-secondary mb-2" data-tooltip="Right tooltip" data-placement="right">Tooltip on right</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Demo -->
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <h3 class="card-title">Modal</h3>
+                        <p class="card-text">Click to see modal in action.</p>
+                        <button class="btn btn-primary" onclick="showModal()">Open Modal</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="utilities" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5">Utility Classes</h2>
+                
+                <!-- Spacing Utilities -->
+                <div class="mb-5">
+                    <h3>Spacing</h3>
+                    <div class="bg-white p-3 m-2">Padding 3, Margin 2</div>
+                    <div class="bg-white p-4 m-3">Padding 4, Margin 3</div>
+                </div>
+
+                <!-- Display Utilities -->
+                <div class="mb-5">
+                    <h3>Display</h3>
+                    <div class="d-flex justify-content-between mb-3">
+                        <div class="p-2 bg-primary text-light">Flex Item 1</div>
+                        <div class="p-2 bg-primary text-light">Flex Item 2</div>
+                        <div class="p-2 bg-primary text-light">Flex Item 3</div>
+                    </div>
+                </div>
+
+                <!-- Text Utilities -->
+                <div class="mb-5">
+                    <h3>Text</h3>
+                    <p class="text-primary">Primary Text</p>
+                    <p class="text-success">Success Text</p>
+                    <p class="text-danger">Danger Text</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-light py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 NexTab Framework. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/framework.js"></script>
+    <script src="js/components/modal.js"></script>
+    <script src="js/components/dropdown.js"></script>
+    <script src="js/components/tooltip.js"></script>
+    <script>
+        function showModal() {
+            const modal = new NexTab.Modal({
+                title: 'Welcome to NexTab',
+                content: '<p>NexTab is a modern CSS framework that makes web development easier and faster. Get started by including our CSS and JS files in your project.</p>',
+                backdrop: true,
+                keyboard: true
+            });
+            modal.show(document.body);
+        }
+
+        // Initialize tooltips with different placements
+        document.querySelectorAll('[data-tooltip]').forEach(element => {
+            const placement = element.getAttribute('data-placement') || 'top';
+            new NexTab.Tooltip(element, { placement });
+        });
+    </script>
+</body>
+</html>

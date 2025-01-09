@@ -1,0 +1,237 @@
+// Navbar variables
+$navbar-padding-y: .5rem !default;
+$navbar-padding-x: 1rem !default;
+$navbar-nav-link-padding-x: .5rem !default;
+$navbar-height: 3.5rem !default;
+$navbar-brand-font-size: 1.25rem !default;
+$navbar-brand-padding-y: .3125rem !default;
+$navbar-toggler-padding-y: .25rem !default;
+$navbar-toggler-padding-x: .75rem !default;
+$navbar-toggler-border-radius: .25rem !default;
+
+// Base navbar styles
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: $navbar-padding-y $navbar-padding-x;
+  min-height: $navbar-height;
+
+  // Fixed positions
+  &.fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: var(--zindex-fixed);
+  }
+
+  &.fixed-bottom {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: var(--zindex-fixed);
+  }
+
+  &.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: var(--zindex-sticky);
+  }
+}
+
+// Navbar brand
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  padding-top: $navbar-brand-padding-y;
+  padding-bottom: $navbar-brand-padding-y;
+  margin-right: $navbar-padding-x;
+  font-size: $navbar-brand-font-size;
+  text-decoration: none;
+  white-space: nowrap;
+
+  > img {
+    height: calc($navbar-height * 0.6);
+    width: auto;
+  }
+}
+
+// Navbar nav
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .nav-link {
+    padding-right: $navbar-nav-link-padding-x;
+    padding-left: $navbar-nav-link-padding-x;
+  }
+
+  .dropdown-menu {
+    position: static;
+    float: none;
+  }
+}
+
+// Navbar text
+.navbar-text {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+// Navbar collapse
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+// Navbar toggler
+.navbar-toggler {
+  padding: $navbar-toggler-padding-y $navbar-toggler-padding-x;
+  font-size: $navbar-brand-font-size;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: $navbar-toggler-border-radius;
+  transition: box-shadow .15s ease-in-out;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 .25rem;
+  }
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+}
+
+// Responsive navbar
+@include media-breakpoint-up(sm) {
+  .navbar-expand-sm {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    .navbar-nav {
+      flex-direction: row;
+
+      .dropdown-menu {
+        position: absolute;
+      }
+
+      .nav-link {
+        padding-right: $navbar-nav-link-padding-x;
+        padding-left: $navbar-nav-link-padding-x;
+      }
+    }
+
+    .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+    }
+
+    .navbar-toggler {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .navbar-expand-md {
+    @extend .navbar-expand-sm;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .navbar-expand-lg {
+    @extend .navbar-expand-sm;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .navbar-expand-xl {
+    @extend .navbar-expand-sm;
+  }
+}
+
+// Navbar themes
+@mixin navbar-variant($background, $color) {
+  background-color: var(--#{$background});
+  color: var(--#{$color});
+
+  .navbar-brand,
+  .navbar-brand:hover,
+  .navbar-brand:focus {
+    color: var(--#{$color});
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: rgba(var(--#{$color}-rgb), .85);
+
+      &:hover,
+      &:focus {
+        color: var(--#{$color});
+      }
+
+      &.disabled {
+        color: rgba(var(--#{$color}-rgb), .3);
+      }
+    }
+
+    .nav-link.active,
+    .show > .nav-link {
+      color: var(--#{$color});
+    }
+  }
+
+  .navbar-toggler {
+    color: rgba(var(--#{$color}-rgb), .85);
+    border-color: rgba(var(--#{$color}-rgb), .1);
+  }
+
+  .navbar-text {
+    color: rgba(var(--#{$color}-rgb), .85);
+  }
+}
+
+.navbar-light {
+  @include navbar-variant('light', 'dark');
+}
+
+.navbar-dark {
+  @include navbar-variant('dark', 'white');
+}
+
+@each $color in (primary, secondary, success, danger, warning, info) {
+  .navbar-#{$color} {
+    @include navbar-variant($color, "#{$color}-contrast");
+  }
+}
+
+// RTL support
+[dir="rtl"] {
+  .navbar-brand {
+    margin-right: 0;
+    margin-left: $navbar-padding-x;
+  }
+
+  .navbar-nav {
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+  }
+}

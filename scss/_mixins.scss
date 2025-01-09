@@ -1,0 +1,147 @@
+// RTL Mixins
+@mixin rtl {
+  @if $enable-rtl {
+    #{$rtl-prefix} & {
+      @content;
+    }
+  }
+}
+
+@mixin rtl-prop($prop, $ltr-value, $rtl-value) {
+  #{$prop}: $ltr-value;
+  
+  @include rtl {
+    #{$prop}: $rtl-value;
+  }
+}
+
+// Accessibility Mixins
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 0;
+    box-shadow: $focus-visible-box-shadow;
+  }
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin sr-only-focusable {
+  &:not(:focus) {
+    @include sr-only();
+  }
+}
+
+// Icon Mixins
+@mixin icon-size($size) {
+  width: $size;
+  height: $size;
+  font-size: $size;
+  line-height: $size;
+}
+
+// Responsive Mixins
+@mixin media-breakpoint-up($breakpoint) {
+  $min: map-get($grid-breakpoints, $breakpoint);
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  $max: map-get($grid-breakpoints, $breakpoint);
+  @if $max {
+    @media (max-width: ($max - .02)) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+// Grid Mixins
+@mixin make-container($padding-x: $grid-gutter-width / 2) {
+  width: 100%;
+  padding-right: $padding-x;
+  padding-left: $padding-x;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@mixin make-row($gutter: $grid-gutter-width) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$gutter / 2;
+  margin-left: -$gutter / 2;
+}
+
+@mixin make-col($size, $columns: $grid-columns) {
+  flex: 0 0 percentage($size / $columns);
+  max-width: percentage($size / $columns);
+}
+
+// Typography Mixins
+@mixin font-size($size) {
+  font-size: $size;
+  
+  @if $size > 1.25rem {
+    line-height: $line-height-sm;
+  } @else {
+    line-height: $line-height-base;
+  }
+}
+
+// Animation Mixins
+@mixin fade-in($duration: .2s) {
+  animation: fadeIn $duration ease-in;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@mixin slide-in($direction: 'up', $distance: 10px, $duration: .3s) {
+  $start-transform: '';
+  $end-transform: '';
+  
+  @if $direction == 'up' {
+    $start-transform: translateY($distance);
+  } @else if $direction == 'down' {
+    $start-transform: translateY(-$distance);
+  } @else if $direction == 'left' {
+    $start-transform: translateX($distance);
+  } @else if $direction == 'right' {
+    $start-transform: translateX(-$distance);
+  }
+  
+  animation: slideIn $duration ease-out;
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: $start-transform;
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

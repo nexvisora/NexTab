@@ -1,0 +1,458 @@
+// Utility Maps
+$utilities: (
+  // Display
+  "display": (
+    responsive: true,
+    print: true,
+    property: display,
+    class: d,
+    values: (
+      none: none,
+      inline: inline,
+      inline-block: inline-block,
+      block: block,
+      grid: grid,
+      flex: flex,
+      inline-flex: inline-flex,
+      table: table,
+      table-row: table-row,
+      table-cell: table-cell
+    )
+  ),
+
+  // Margin and padding
+  "margin": (
+    responsive: true,
+    property: margin,
+    class: m,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "margin-x": (
+    responsive: true,
+    property: margin-right margin-left,
+    class: mx,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "margin-y": (
+    responsive: true,
+    property: margin-top margin-bottom,
+    class: my,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "margin-top": (
+    responsive: true,
+    property: margin-top,
+    class: mt,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "margin-end": (
+    responsive: true,
+    property: margin-right,
+    class: me,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "margin-bottom": (
+    responsive: true,
+    property: margin-bottom,
+    class: mb,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "margin-start": (
+    responsive: true,
+    property: margin-left,
+    class: ms,
+    values: map-merge($spacers, (auto: auto))
+  ),
+  "padding": (
+    responsive: true,
+    property: padding,
+    class: p,
+    values: $spacers
+  ),
+  "padding-x": (
+    responsive: true,
+    property: padding-right padding-left,
+    class: px,
+    values: $spacers
+  ),
+  "padding-y": (
+    responsive: true,
+    property: padding-top padding-bottom,
+    class: py,
+    values: $spacers
+  ),
+  "padding-top": (
+    responsive: true,
+    property: padding-top,
+    class: pt,
+    values: $spacers
+  ),
+  "padding-end": (
+    responsive: true,
+    property: padding-right,
+    class: pe,
+    values: $spacers
+  ),
+  "padding-bottom": (
+    responsive: true,
+    property: padding-bottom,
+    class: pb,
+    values: $spacers
+  ),
+  "padding-start": (
+    responsive: true,
+    property: padding-left,
+    class: ps,
+    values: $spacers
+  ),
+
+  // Text alignment
+  "text-align": (
+    responsive: true,
+    property: text-align,
+    class: text,
+    values: (
+      start: left,
+      end: right,
+      center: center,
+      justify: justify
+    )
+  ),
+
+  // Font weight
+  "font-weight": (
+    property: font-weight,
+    class: fw,
+    values: (
+      light: $font-weight-light,
+      normal: $font-weight-normal,
+      medium: 500,
+      semibold: 600,
+      bold: $font-weight-bold
+    )
+  ),
+
+  // Font size
+  "font-size": (
+    responsive: true,
+    property: font-size,
+    class: fs,
+    values: (
+      1: $h1-font-size,
+      2: $h2-font-size,
+      3: $h3-font-size,
+      4: $h4-font-size,
+      5: $h5-font-size,
+      6: $h6-font-size,
+      sm: $font-size-sm,
+      lg: $font-size-lg
+    )
+  ),
+
+  // Line height
+  "line-height": (
+    property: line-height,
+    class: lh,
+    values: (
+      1: 1,
+      sm: $line-height-sm,
+      base: $line-height-base,
+      lg: $line-height-lg
+    )
+  ),
+
+  // Color
+  "color": (
+    property: color,
+    class: text,
+    local-vars: (
+      "text-opacity": 1
+    ),
+    values: map-merge(
+      $theme-colors,
+      (
+        "white": $white,
+        "body": $body-color,
+        "muted": $text-muted,
+        "black-50": rgba($black, .5),
+        "white-50": rgba($white, .5),
+        "reset": inherit,
+      )
+    )
+  ),
+
+  // Background color
+  "background-color": (
+    property: background-color,
+    class: bg,
+    local-vars: (
+      "bg-opacity": 1
+    ),
+    values: map-merge(
+      $theme-colors,
+      (
+        "body": $body-bg,
+        "white": $white,
+        "transparent": transparent
+      )
+    )
+  ),
+
+  // Position
+  "position": (
+    property: position,
+    values: static relative absolute fixed sticky
+  ),
+
+  // Width
+  "width": (
+    property: width,
+    class: w,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  ),
+
+  // Height
+  "height": (
+    property: height,
+    class: h,
+    values: (
+      25: 25%,
+      50: 50%,
+      75: 75%,
+      100: 100%,
+      auto: auto
+    )
+  ),
+
+  // Flex
+  "flex": (
+    responsive: true,
+    property: flex,
+    values: (fill: 1 1 auto)
+  ),
+  "flex-direction": (
+    responsive: true,
+    property: flex-direction,
+    class: flex,
+    values: row column row-reverse column-reverse
+  ),
+  "flex-grow": (
+    responsive: true,
+    property: flex-grow,
+    class: flex,
+    values: (
+      grow-0: 0,
+      grow-1: 1,
+    )
+  ),
+  "flex-shrink": (
+    responsive: true,
+    property: flex-shrink,
+    class: flex,
+    values: (
+      shrink-0: 0,
+      shrink-1: 1,
+    )
+  ),
+  "flex-wrap": (
+    responsive: true,
+    property: flex-wrap,
+    class: flex,
+    values: wrap nowrap wrap-reverse
+  ),
+  "gap": (
+    responsive: true,
+    property: gap,
+    class: gap,
+    values: $spacers
+  ),
+
+  // Justify content
+  "justify-content": (
+    responsive: true,
+    property: justify-content,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      between: space-between,
+      around: space-around,
+      evenly: space-evenly,
+    )
+  ),
+
+  // Align items
+  "align-items": (
+    responsive: true,
+    property: align-items,
+    values: (
+      start: flex-start,
+      end: flex-end,
+      center: center,
+      baseline: baseline,
+      stretch: stretch,
+    )
+  ),
+
+  // Border
+  "border": (
+    property: border,
+    values: (
+      null: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color),
+      0: 0,
+    )
+  ),
+  "border-top": (
+    property: border-top,
+    values: (
+      null: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color),
+      0: 0,
+    )
+  ),
+  "border-end": (
+    property: border-right,
+    values: (
+      null: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color),
+      0: 0,
+    )
+  ),
+  "border-bottom": (
+    property: border-bottom,
+    values: (
+      null: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color),
+      0: 0,
+    )
+  ),
+  "border-start": (
+    property: border-left,
+    values: (
+      null: var(--#{$prefix}border-width) solid var(--#{$prefix}border-color),
+      0: 0,
+    )
+  ),
+
+  // Border radius
+  "rounded": (
+    property: border-radius,
+    class: rounded,
+    values: (
+      null: var(--#{$prefix}border-radius),
+      0: 0,
+      1: var(--#{$prefix}border-radius-sm),
+      2: var(--#{$prefix}border-radius),
+      3: var(--#{$prefix}border-radius-lg),
+      circle: 50%,
+      pill: 50rem
+    )
+  ),
+
+  // Visibility
+  "visibility": (
+    property: visibility,
+    class: null,
+    values: (
+      visible: visible,
+      invisible: hidden,
+    )
+  ),
+
+  // Z-index
+  "z-index": (
+    property: z-index,
+    class: z,
+    values: (
+      0: 0,
+      1: 1,
+      2: 2,
+      3: 3,
+      4: 4,
+      5: 5,
+    )
+  ),
+
+  // Overflow
+  "overflow": (
+    property: overflow,
+    values: auto hidden visible scroll,
+  ),
+
+  // Opacity
+  "opacity": (
+    property: opacity,
+    values: (
+      0: 0,
+      25: .25,
+      50: .5,
+      75: .75,
+      100: 1,
+    )
+  )
+);
+
+// Generate utility classes
+@each $key, $utility in $utilities {
+  $values: map-get($utility, "values");
+
+  // If the values are a map or a list, process them
+  @if type-of($values) == "map" or type-of($values) == "list" {
+    @each $value-key, $value in $values {
+      $properties: map-get($utility, "property");
+      
+      // Handle multiple properties
+      @if type-of($properties) == "string" {
+        $properties: ($properties,);
+      }
+
+      // Create the class name
+      $class-name: if($value-key, "-#{$value-key}", "");
+      
+      .#{map-get($utility, "class")}#{$class-name} {
+        @each $property in $properties {
+          #{$property}: $value !important;
+        }
+      }
+
+      // Generate responsive variants
+      @if map-get($utility, "responsive") {
+        @each $breakpoint in map-keys($grid-breakpoints) {
+          @include media-breakpoint-up($breakpoint) {
+            $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+            
+            .#{map-get($utility, "class")}#{$infix}#{$class-name} {
+              @each $property in $properties {
+                #{$property}: $value !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// RTL utilities
+[dir="rtl"] {
+  .me-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+
+  .text-start {
+    text-align: right !important;
+  }
+
+  .text-end {
+    text-align: left !important;
+  }
+}

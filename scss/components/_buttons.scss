@@ -1,0 +1,227 @@
+// Button variables
+$btn-padding-y: .375rem !default;
+$btn-padding-x: .75rem !default;
+$btn-font-size: 1rem !default;
+$btn-line-height: 1.5 !default;
+$btn-border-width: 1px !default;
+$btn-border-radius: .25rem !default;
+$btn-transition: color .15s ease-in-out,
+                 background-color .15s ease-in-out,
+                 border-color .15s ease-in-out,
+                 box-shadow .15s ease-in-out !default;
+
+// Button sizes
+$btn-padding-y-sm: .25rem !default;
+$btn-padding-x-sm: .5rem !default;
+$btn-font-size-sm: .875rem !default;
+
+$btn-padding-y-lg: .5rem !default;
+$btn-padding-x-lg: 1rem !default;
+$btn-font-size-lg: 1.25rem !default;
+
+// Base button styles
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $btn-padding-y $btn-padding-x;
+  font-size: $btn-font-size;
+  font-weight: 400;
+  line-height: $btn-line-height;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: $btn-border-width solid transparent;
+  border-radius: $btn-border-radius;
+  transition: $btn-transition;
+
+  // Remove focus outline
+  &:focus {
+    outline: 0;
+  }
+
+  // Focus visible styles
+  &:focus-visible {
+    box-shadow: var(--focus-visible-box-shadow);
+  }
+
+  // Disabled state
+  &.disabled,
+  &:disabled {
+    opacity: .65;
+    pointer-events: none;
+  }
+
+  // Icon spacing
+  .icon + span,
+  span + .icon {
+    margin-left: .5rem;
+  }
+
+  // RTL icon spacing
+  [dir="rtl"] & {
+    .icon + span,
+    span + .icon {
+      margin-left: 0;
+      margin-right: .5rem;
+    }
+  }
+}
+
+// Button variants
+@mixin button-variant($background, $border, $hover-background, $hover-border, $active-background, $active-border) {
+  color: var(--#{$background}-contrast);
+  background-color: var(--#{$background});
+  border-color: var(--#{$border});
+
+  &:hover {
+    color: var(--#{$hover-background}-contrast);
+    background-color: var(--#{$hover-background});
+    border-color: var(--#{$hover-border});
+  }
+
+  &:focus-visible {
+    color: var(--#{$hover-background}-contrast);
+    background-color: var(--#{$hover-background});
+    border-color: var(--#{$hover-border});
+  }
+
+  &:active,
+  &.active {
+    color: var(--#{$active-background}-contrast);
+    background-color: var(--#{$active-background});
+    border-color: var(--#{$active-border});
+  }
+}
+
+// Button outline variants
+@mixin button-outline-variant($color) {
+  color: var(--#{$color});
+  border-color: var(--#{$color});
+  background-color: transparent;
+
+  &:hover {
+    color: var(--#{$color}-contrast);
+    background-color: var(--#{$color});
+    border-color: var(--#{$color});
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 .25rem rgba(var(--#{$color}-rgb), .5);
+  }
+
+  &:active,
+  &.active {
+    color: var(--#{$color}-contrast);
+    background-color: var(--#{$color});
+    border-color: var(--#{$color});
+  }
+}
+
+// Generate theme variants
+@each $color in (primary, secondary, success, danger, warning, info) {
+  .btn-#{$color} {
+    @include button-variant($color, $color, "#{$color}-dark", "#{$color}-dark", "#{$color}-darker", "#{$color}-darker");
+  }
+
+  .btn-outline-#{$color} {
+    @include button-outline-variant($color);
+  }
+}
+
+// Button sizes
+.btn-sm {
+  padding: $btn-padding-y-sm $btn-padding-x-sm;
+  font-size: $btn-font-size-sm;
+}
+
+.btn-lg {
+  padding: $btn-padding-y-lg $btn-padding-x-lg;
+  font-size: $btn-font-size-lg;
+}
+
+// Block button
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+
+// Button group
+.btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  > .btn {
+    position: relative;
+    flex: 1 1 auto;
+
+    &:not(:first-child) {
+      margin-left: -$btn-border-width;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      z-index: 1;
+    }
+  }
+}
+
+// RTL Button group
+[dir="rtl"] {
+  .btn-group {
+    > .btn {
+      &:not(:first-child) {
+        margin-left: 0;
+        margin-right: -$btn-border-width;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-top-left-radius: $btn-border-radius;
+        border-bottom-left-radius: $btn-border-radius;
+      }
+
+      &:not(:last-child) {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: $btn-border-radius;
+        border-bottom-right-radius: $btn-border-radius;
+      }
+    }
+  }
+}
+
+// Loading state
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    border-right-color: transparent;
+    animation: button-loading-spinner 0.75s linear infinite;
+  }
+}
+
+@keyframes button-loading-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}

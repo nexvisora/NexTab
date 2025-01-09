@@ -1,0 +1,104 @@
+# Source files
+src/
+tests/
+examples/
+docs/
+
+# Development files
+.github/
+.vscode/
+.idea/
+.editorconfig
+.eslintrc
+.eslintignore
+.prettierrc
+.prettierignore
+.travis.yml
+.gitlab-ci.yml
+.circleci/
+.husky/
+jest.config.js
+rollup.config.js
+tsconfig.json
+webpack.config.js
+babel.config.js
+gulpfile.js
+*.test.js
+*.spec.js
+__tests__/
+__mocks__/
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.travis.yml
+.gitlab-ci.yml
+.github/
+.circleci/
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Temporary files
+.tmp/
+.temp/
+.cache/
+
+# Build tools
+webpack.config.js
+rollup.config.js
+gulpfile.js
+.babelrc
+.eslintrc
+.eslintignore
+.prettierrc
+.prettierignore
+tsconfig.json
+jest.config.js
+
+# Documentation source
+docs-src/
+documentation/
+wiki/
+
+# Development configs
+nodemon.json
+.env
+.env.*
+*.config.js
+
+# Test files
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js
+coverage/
+
+# Misc
+.DS_Store
+*.tgz
+.npmrc
+.yarnrc
+.yarn-integrity
+.editorconfig
+CONTRIBUTING.md
+CHANGELOG.md
+*.todo
+*.md
+!README.md
+!LICENSE

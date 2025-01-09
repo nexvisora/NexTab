@@ -1,0 +1,85 @@
+/* Icon styles */
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--icon-size, 1em);
+    height: var(--icon-size, 1em);
+    vertical-align: middle;
+    color: currentColor;
+}
+
+.icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+/* Icon sizes */
+.icon-sm {
+    --icon-size: 0.875em;
+}
+
+.icon-md {
+    --icon-size: 1em;
+}
+
+.icon-lg {
+    --icon-size: 1.33em;
+}
+
+.icon-xl {
+    --icon-size: 1.5em;
+}
+
+/* Icon colors - inherits from text utilities */
+.text-primary .icon,
+.icon.text-primary {
+    color: var(--primary);
+}
+
+.text-secondary .icon,
+.icon.text-secondary {
+    color: var(--secondary);
+}
+
+.text-success .icon,
+.icon.text-success {
+    color: var(--success);
+}
+
+.text-danger .icon,
+.icon.text-danger {
+    color: var(--danger);
+}
+
+/* RTL support */
+[dir="rtl"] .icon-arrow-right svg {
+    transform: scaleX(-1);
+}
+
+[dir="rtl"] .icon-arrow-left svg {
+    transform: scaleX(-1);
+}
+
+/* Animation */
+.icon.spin svg {
+    animation: icon-spin 2s linear infinite;
+}
+
+@keyframes icon-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Focus styles for interactive icons */
+button.icon:focus-visible,
+a.icon:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-visible-box-shadow);
+    border-radius: var(--border-radius);
+}

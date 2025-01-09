@@ -1,0 +1,134 @@
+/* Tooltip styles */
+.tooltip {
+    position: absolute;
+    z-index: var(--zindex-tooltip);
+    display: block;
+    margin: 0;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: normal;
+    line-break: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.tooltip.show {
+    opacity: 0.9;
+}
+
+.tooltip-inner {
+    max-width: 200px;
+    padding: 0.25rem 0.5rem;
+    color: #fff;
+    text-align: center;
+    background-color: #000;
+    border-radius: var(--border-radius);
+}
+
+/* Arrow */
+.tooltip-arrow {
+    position: absolute;
+    display: block;
+    width: 0.8rem;
+    height: 0.4rem;
+}
+
+.tooltip-arrow::before {
+    position: absolute;
+    content: "";
+    border-color: transparent;
+    border-style: solid;
+}
+
+/* Placements */
+.bs-tooltip-top {
+    padding: 0.4rem 0;
+}
+
+.bs-tooltip-top .tooltip-arrow {
+    bottom: 0;
+}
+
+.bs-tooltip-top .tooltip-arrow::before {
+    top: 0;
+    border-width: 0.4rem 0.4rem 0;
+    border-top-color: #000;
+}
+
+.bs-tooltip-right {
+    padding: 0 0.4rem;
+}
+
+.bs-tooltip-right .tooltip-arrow {
+    left: 0;
+    width: 0.4rem;
+    height: 0.8rem;
+}
+
+.bs-tooltip-right .tooltip-arrow::before {
+    right: 0;
+    border-width: 0.4rem 0.4rem 0.4rem 0;
+    border-right-color: #000;
+}
+
+.bs-tooltip-bottom {
+    padding: 0.4rem 0;
+}
+
+.bs-tooltip-bottom .tooltip-arrow {
+    top: 0;
+}
+
+.bs-tooltip-bottom .tooltip-arrow::before {
+    bottom: 0;
+    border-width: 0 0.4rem 0.4rem;
+    border-bottom-color: #000;
+}
+
+.bs-tooltip-left {
+    padding: 0 0.4rem;
+}
+
+.bs-tooltip-left .tooltip-arrow {
+    right: 0;
+    width: 0.4rem;
+    height: 0.8rem;
+}
+
+.bs-tooltip-left .tooltip-arrow::before {
+    left: 0;
+    border-width: 0.4rem 0 0.4rem 0.4rem;
+    border-left-color: #000;
+}
+
+/* Colors */
+.tooltip-primary .tooltip-inner {
+    background-color: var(--primary);
+}
+
+.tooltip-primary.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: var(--primary);
+}
+
+.tooltip-primary.bs-tooltip-right .tooltip-arrow::before {
+    border-right-color: var(--primary);
+}
+
+.tooltip-primary.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: var(--primary);
+}
+
+.tooltip-primary.bs-tooltip-left .tooltip-arrow::before {
+    border-left-color: var(--primary);
+}
+
+/* Similar patterns for other colors (secondary, success, danger, etc.) */

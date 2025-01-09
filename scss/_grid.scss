@@ -1,0 +1,202 @@
+// Grid System
+// A modern, flexbox-based responsive grid system
+
+// Grid variables (can be overridden)
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+$grid-row-columns: 6 !default;
+
+// Breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+// Container max-widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+) !default;
+
+// Container
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: $grid-gutter-width * 0.5;
+  padding-left: $grid-gutter-width * 0.5;
+
+  @each $breakpoint, $max-width in $container-max-widths {
+    @include media-breakpoint-up($breakpoint) {
+      max-width: $max-width;
+    }
+  }
+
+  &-fluid {
+    width: 100%;
+    padding-right: $grid-gutter-width * 0.5;
+    padding-left: $grid-gutter-width * 0.5;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+// Row
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -$grid-gutter-width * 0.5;
+  margin-left: -$grid-gutter-width * 0.5;
+
+  // Remove margin from nested rows
+  > .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  // No gutters
+  &-no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+// Base column
+.col {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  padding-right: $grid-gutter-width * 0.5;
+  padding-left: $grid-gutter-width * 0.5;
+}
+
+// Auto-width column
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+  padding-right: $grid-gutter-width * 0.5;
+  padding-left: $grid-gutter-width * 0.5;
+}
+
+// Column sizing
+@mixin make-col($size) {
+  flex: 0 0 percentage($size / $grid-columns);
+  max-width: percentage($size / $grid-columns);
+}
+
+// Generate columns for each breakpoint
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: if($breakpoint == 'xs', "", "-#{$breakpoint}");
+
+  @include media-breakpoint-up($breakpoint) {
+    // Basic columns
+    @for $i from 1 through $grid-columns {
+      .col#{$infix}-#{$i} {
+        @include make-col($i);
+      }
+    }
+
+    // Offset columns
+    @for $i from 0 through ($grid-columns - 1) {
+      .offset#{$infix}-#{$i} {
+        margin-left: if($i > 0, percentage($i / $grid-columns), 0);
+      }
+    }
+
+    // Order classes
+    .order#{$infix}-first { order: -1; }
+    .order#{$infix}-last { order: $grid-columns + 1; }
+    @for $i from 0 through $grid-columns {
+      .order#{$infix}-#{$i} { order: $i; }
+    }
+  }
+}
+
+// Flex utilities for grid
+.d-flex { display: flex !important; }
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.flex-row-reverse { flex-direction: row-reverse !important; }
+.flex-column-reverse { flex-direction: column-reverse !important; }
+
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+.flex-wrap-reverse { flex-wrap: wrap-reverse !important; }
+
+.justify-content-start { justify-content: flex-start !important; }
+.justify-content-end { justify-content: flex-end !important; }
+.justify-content-center { justify-content: center !important; }
+.justify-content-between { justify-content: space-between !important; }
+.justify-content-around { justify-content: space-around !important; }
+
+.align-items-start { align-items: flex-start !important; }
+.align-items-end { align-items: flex-end !important; }
+.align-items-center { align-items: center !important; }
+.align-items-baseline { align-items: baseline !important; }
+.align-items-stretch { align-items: stretch !important; }
+
+// Responsive flex utilities
+@each $breakpoint in map-keys($grid-breakpoints) {
+  $infix: if($breakpoint == 'xs', "", "-#{$breakpoint}");
+
+  @include media-breakpoint-up($breakpoint) {
+    .d#{$infix}-flex { display: flex !important; }
+    .d#{$infix}-none { display: none !important; }
+    
+    .flex#{$infix}-row { flex-direction: row !important; }
+    .flex#{$infix}-column { flex-direction: column !important; }
+    
+    .justify-content#{$infix}-start { justify-content: flex-start !important; }
+    .justify-content#{$infix}-end { justify-content: flex-end !important; }
+    .justify-content#{$infix}-center { justify-content: center !important; }
+    .justify-content#{$infix}-between { justify-content: space-between !important; }
+    .justify-content#{$infix}-around { justify-content: space-around !important; }
+    
+    .align-items#{$infix}-start { align-items: flex-start !important; }
+    .align-items#{$infix}-end { align-items: flex-end !important; }
+    .align-items#{$infix}-center { align-items: center !important; }
+    .align-items#{$infix}-baseline { align-items: baseline !important; }
+    .align-items#{$infix}-stretch { align-items: stretch !important; }
+  }
+}
+
+// RTL Support
+[dir="rtl"] {
+  .row {
+    margin-right: -$grid-gutter-width * 0.5;
+    margin-left: -$grid-gutter-width * 0.5;
+  }
+
+  .col,
+  [class*="col-"] {
+    padding-right: $grid-gutter-width * 0.5;
+    padding-left: $grid-gutter-width * 0.5;
+  }
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: if($breakpoint == 'xs', "", "-#{$breakpoint}");
+
+    @include media-breakpoint-up($breakpoint) {
+      @for $i from 0 through ($grid-columns - 1) {
+        .offset#{$infix}-#{$i} {
+          margin-right: if($i > 0, percentage($i / $grid-columns), 0);
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}

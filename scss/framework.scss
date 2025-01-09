@@ -1,0 +1,97 @@
+// Framework Core
+@import "variables";
+@import "mixins";
+@import "theme";
+@import "utilities";
+@import "grid";
+
+// Components
+@import "components/buttons";
+@import "components/cards";
+@import "components/navbar";
+@import "components/modal";
+@import "components/dropdown";
+@import "components/tooltip";
+@import "components/icon";
+
+// Plugins
+@import "plugins/datepicker";
+
+// RTL Support
+[dir="rtl"] {
+  // Add any global RTL styles here
+  text-align: right;
+
+  // Reverse margins and paddings
+  .ms-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+
+  .me-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  // Reverse borders
+  .border-end {
+    border-right: 0 !important;
+    border-left: var(--border-width) solid var(--border-color) !important;
+  }
+
+  .border-start {
+    border-left: 0 !important;
+    border-right: var(--border-width) solid var(--border-color) !important;
+  }
+
+  // Reverse positions
+  .start-0 {
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  .end-0 {
+    left: 0 !important;
+    right: auto !important;
+  }
+}
+
+// High Contrast Mode Support
+@media (forced-colors: active) {
+  // Add any global high contrast mode styles here
+  :root {
+    --focus-ring-color: Highlight;
+    --border-color: CanvasText;
+  }
+
+  // Ensure buttons are visible
+  .btn {
+    border: 2px solid CanvasText;
+  }
+
+  // Ensure form controls are visible
+  .form-control {
+    border: 2px solid CanvasText;
+  }
+
+  // Ensure cards are visible
+  .card {
+    border: 2px solid CanvasText;
+  }
+}
+
+// Print Styles
+@media print {
+  // Add any global print styles here
+  .no-print {
+    display: none !important;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+}
